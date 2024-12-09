@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `SAE303-VOD`
 --
-CREATE DATABASE IF NOT EXISTS `SAE303-VOD` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
-USE `SAE303-VOD`;
 
 -- --------------------------------------------------------
 
