@@ -23,6 +23,22 @@ require_once "Class/HttpRequest.php";
  *  Ici ProductController est le controleur qui traitera toutes les requêtes ciblant la ressource "products"
  *  On ajoutera des "routes" à $router si l'on a d'autres ressource à traiter.
  */
+require_once 'Rental.php';
+require_once 'Sale.php';
+require_once 'RevenueRepository.php';
+require_once 'RevenueController.php';
+
+$pdo = new PDO("mysql:host=localhost;dbname=SAE303-VOD", "pain11", "pain11");
+$repository = new RevenueRepository($pdo);
+$controller = new RevenueController($repository);
+
+if ($_SERVER['REQUEST_URI'] === '/revenues/total') {
+    echo $controller->getTotalRevenues();
+} elseif ($_SERVER['REQUEST_URI'] === '/revenues/monthly') {
+    $month = $_GET['month'];
+    $year = $_GET['year'];
+    echo $controller->getMonthlyRevenues($month, $year);
+}
 $router = [
     
 ];
@@ -55,3 +71,4 @@ http_response_code(404); // si on a pas de controlleur pour traiter la requête 
 die();
 
 ?>
+
